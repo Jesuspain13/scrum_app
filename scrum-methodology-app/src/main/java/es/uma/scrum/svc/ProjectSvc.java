@@ -8,5 +8,9 @@ import es.uma.scrum.models.Project;
 
 public interface ProjectSvc {
 	
+	/**
+	 * Get projects from DB (setting null employee attributes that invoke recursion)
+	 * @return Project list
+	 */
 	public List<Project> getProjects();
 }

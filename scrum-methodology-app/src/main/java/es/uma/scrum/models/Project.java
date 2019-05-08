@@ -19,6 +19,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "project")
 public class Project implements Serializable {
@@ -42,7 +44,7 @@ public class Project implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date finishDate;
 	
-	@OneToMany(mappedBy = "actualProject")
+	@OneToMany(mappedBy = "actualProject", fetch = FetchType.LAZY)
 	private List<Employee> team;
 
 	public Long getId() {
@@ -75,6 +77,14 @@ public class Project implements Serializable {
 
 	public void setFinishDate(Date finishDate) {
 		this.finishDate = finishDate;
+	}
+
+	public List<Employee> getTeam() {
+		return team;
+	}
+
+	public void setTeam(List<Employee> team) {
+		this.team = team;
 	}
 
 	

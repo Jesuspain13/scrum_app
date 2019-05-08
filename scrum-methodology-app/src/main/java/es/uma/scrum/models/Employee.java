@@ -1,6 +1,7 @@
 package es.uma.scrum.models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,11 +37,11 @@ public class Employee implements Serializable {
 	@JoinColumn(name = "actual_project_id")
 	private Project actualProject;
 	
-	public Long getId() {
+	public Long getIdEmployee() {
 		return idEmployee;
 	}
-	public void setId(Long id) {
-		this.idEmployee = id;
+	public void setIdEmployee(Long idEmployee) {
+		this.idEmployee = idEmployee;
 	}
 	public String getName() {
 		return name;
@@ -55,5 +56,21 @@ public class Employee implements Serializable {
 		this.password = password;
 	}
 	
+	public Project getActualProject() {
+		return actualProject;
+	}
+	public void setActualProject(Project actualProject) {
+		this.actualProject = actualProject;
+	}
+	
+	/**
+	 * Iterate employee list and set actual project attribute null
+	 * @param employees that will be change
+	 */
+	public static void setActualTeamNull(List<Employee> employees) {
+		for (Employee e: employees) {
+			e.setActualProject(null);
+		}
+	}
 	
 }
